@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🛤️ Jerney — Blog Platform
 
 A Gen-Z vibe blog platform built with a 3-tier architecture — React frontend, Node.js backend, and PostgreSQL database.
@@ -178,3 +179,6 @@ The Vite dev server starts on `http://localhost:3000` and proxies `/api` request
 ---
 
 Built with 💜 by the Jerney team. No cap, this blog platform hits different. 🛤️
+=======
+# go-web-app
+>>>>>>> 6834b96d1326b10deeb57e9e354da6d17a00c819
