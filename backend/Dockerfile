@@ -10,7 +10,7 @@ RUN apk --no-cache add dumb-init
 WORKDIR /app
 COPY --from=build /app/node_modules /app/node_modules
 COPY /src ./src/
-RUN chown -R appuser:appgroup /appgroup
+RUN chown -R appuser:appgroup /app
 USER appuser
 EXPOSE 5000
 ENTRYPOINT ["dumb-init", "--"]
