@@ -1,7 +1,7 @@
 FROM node:20-alpine AS Build
 WORKDIR /app
 COPY package.json .
-RUN npm ci && cache clean --force
+RUN npm install && npm cache clean --force
 COPY . .
 RUN npm run build
 
