@@ -27,7 +27,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: jernery_backend
+    container_name: jernery-backend
     environment:
        PORT: "5000"
        DB_USER: jernery_user
