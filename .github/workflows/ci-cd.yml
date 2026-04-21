@@ -41,11 +41,11 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
-          cache-dependency-path: "${{ matrix.component }}/package-lock.json"
+          cache-dependency-path: "${{ matrix.component }}/package.json"
 
       - name: Install dependencies
         working-directory: ${{ matrix.component }}
-        run: npm ci
+        run: npm install
 
       - name: Run ESLint
         working-directory: ${{ matrix.component }}
@@ -70,11 +70,11 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
-          cache-dependency-path: "${{ matrix.component }}/package-lock.json"
+          cache-dependency-path: "${{ matrix.component }}/package.json"
 
       - name: Install dependencies
         working-directory: ${{ matrix.component }}
-        run: npm ci
+        run: npm install
 
       # npm audit for known vulnerabilities (fail on high/critical)
       - name: npm audit
@@ -115,7 +115,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository }}/jerney-${{ matrix.component }}
+          images: ghcr.io/${{ github.repository }}/jernery-${{ matrix.component }}
           tags: |
             type=sha,prefix=
             type=ref,event=branch
@@ -237,15 +237,15 @@ jobs:
           IMAGE_TAG=${{ steps.sha.outputs.short }}
 
           # Update backend image
-          sed -i "s|image: .*jerney-backend.*|image: ${BACKEND_IMAGE}:${IMAGE_TAG}|g" k8s/jerney.yaml
-          sed -i "s|image: BACKEND_IMAGE_PLACEHOLDER|image: ${BACKEND_IMAGE}:${IMAGE_TAG}|g" k8s/jerney.yaml
+          sed -i "s|image: .*jernery-backend.*|image: ${BACKEND_IMAGE}:${IMAGE_TAG}|g" k8s/jerney.yaml
+          sed -i "s|image: BACKEND_IMAGE_PLACEHOLDER|image: ${BACKEND_IMAGE}:${IMAGE_TAG}|g" k8s/k8.yml
 
           # Update frontend image
           sed -i "s|image: .*jerney-frontend.*|image: ${FRONTEND_IMAGE}:${IMAGE_TAG}|g" k8s/jerney.yaml
-          sed -i "s|image: FRONTEND_IMAGE_PLACEHOLDER|image: ${FRONTEND_IMAGE}:${IMAGE_TAG}|g" k8s/jerney.yaml
+          sed -i "s|image: FRONTEND_IMAGE_PLACEHOLDER|image: ${FRONTEND_IMAGE}:${IMAGE_TAG}|g" k8s/k8.yml
 
           echo "✅ Updated images to tag: ${IMAGE_TAG}"
-          grep "image:" k8s/jerney.yaml
+          grep "image:" k8s/jernery.yml
 
       - name: Commit and push manifest update
         run: |
