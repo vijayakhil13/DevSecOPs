@@ -1,10 +1,10 @@
-FROM node:20-alpine AS build
+FROM node:20-alpine3.21 AS build  
 WORKDIR /app
 COPY package.json  .  
 #npm install is used because there's no package-lock.json if in case package-lock.json is present then npm ci is used.
 RUN npm install --only=production && npm cache clean --force
 
-FROM node:20-alpine AS production
+FROM node:20-alpine3.21 AS production
 RUN addgroup -S appgroup  && adduser -S appuser -G appgroup
 RUN apk --no-cache add dumb-init=1.2.5-r3
 WORKDIR /app
