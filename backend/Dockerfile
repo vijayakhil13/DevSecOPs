@@ -6,7 +6,7 @@ RUN npm install --only=production && npm cache clean --force
 
 FROM node:20-alpine AS production
 RUN addgroup -S appgroup  && adduser -S appuser -G appgroup
-RUN apk --no-cache add dumb-init:v2
+RUN apk --no-cache add dumb-init:1.2.5-r3
 WORKDIR /app
 COPY --from=build /app/node_modules /app/node_modules
 COPY /src ./src/
