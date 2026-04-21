@@ -180,7 +180,7 @@ spec:
               echo "DB is ready"
       containers:
         - name: backend
-          image: vineethvinni/devsecops-backend
+          image: BACKEND_IMAGE_PLACEHOLDER
           ports:
             - containerPort: 5000
               protocol: TCP
@@ -284,7 +284,7 @@ spec:
           effect: "NoSchedule"
       containers:
         - name: frontend
-          image: vineethvinni/devsecops-frontend
+          image: FRONTEND_IMAGE_PLACEHOLDER
           ports:
             - containerPort: 80
               protocol: TCP
